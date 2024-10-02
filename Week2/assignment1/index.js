@@ -19,23 +19,28 @@ function serveStatic(res, filePath, contentType, responseCode = 200) {
   });
 }
 
-
-
+// Server on port 3000
 http.createServer(function(req, res) {
-  console.log('createServer got request');
+  console.log('createServer got request on port 3000');
   const urlPath = req.url.toLowerCase();
   switch (urlPath) {
     case '/':
-      serveStatic(res, '/../public/home.html', 'text/html');
-      break;
-    case '/about':
       res.writeHead(200, { 'Content-Type': 'text/plain' });
-      res.end('About');
+      res.end('Home page Andrew - JS 2 Class');
       break;
     default:
       res.writeHead(404, { 'Content-Type': 'text/plain' });
-      res.end('404: Page not found.');
+      res.end('Not found');
   }
-}).listen(process.env.PORT || 3000);
+}).listen(3000);
 
 console.log('Server running at http://localhost:3000/');
+
+// Server on port 8080
+http.createServer(function(req, res) {
+  console.log('createServer got request on port 8080');
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('Hello Dr. North - Fall 2024! - Andrew');
+}).listen(8080);
+
+console.log('Server running at http://localhost:8080/');
